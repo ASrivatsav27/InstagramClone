@@ -13,12 +13,16 @@ const postSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
         required: [true, "user id is required for creating an post"]
-    }
+    },
+    likes: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "users"
+    }]
 })
 
 
 const postModel = mongoose.model("posts", postSchema)
 
-
+  
 
 module.exports = postModel

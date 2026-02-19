@@ -9,12 +9,17 @@ const followSchema = new mongoose.Schema(
     following: {
       type: String
     },
-  },
-  {
-    timestamps: true, 
-  }
-);
+    status: {
+      type: String,
+      enum: ["pending","accepted","rejected"],
+      default:"pending"
+    }
+  }, {
+    timestamps:true
+  });
 
+followSchema.index({
+follower: 1, following:1},{unique: true})
 
 const followModel = mongoose.model("follows", followSchema)
 

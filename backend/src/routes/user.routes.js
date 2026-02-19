@@ -9,18 +9,11 @@ const identifyUser = require('../middlewares/auth.middleware')
  */
 
 
-userRouter.post('/follow/:username',identifyUser,userController.followUserController)
+userRouter.post('/follow/:username', identifyUser, userController.followUserController)
+userRouter.post('/follow/:follower/accept', identifyUser, userController.acceptUserController)
+userRouter.post('/follow/:follower/rejected', identifyUser, userController.rejectUserController)
+userRouter.post('/unfollow/:username',identifyUser,userController.unfollowUserController)
 
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 module.exports = userRouter
