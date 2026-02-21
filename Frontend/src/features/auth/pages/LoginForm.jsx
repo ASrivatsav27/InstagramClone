@@ -1,22 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/form.scss";
 import axios from "axios";
 import { Link } from "react-router";
+import { useAuth } from "../hooks/useAuth";
 const LoginForm = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const { handleLogin, user } = useAuth();
   async function handleSubmit(e) {
     e.preventDefault();
-
-    axios
-      .post("http://localhost:8000/auth/login", {
-        username,
-        password,
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
+    handleLogin(username, password).then((res) => {});
   }
+
+  useEffect(() => {
+    if (user) {
+      console.log("Logged in user:", user);
+    }
+  }, [user]);
+
   return (
     <main>
       <div className="form-container">

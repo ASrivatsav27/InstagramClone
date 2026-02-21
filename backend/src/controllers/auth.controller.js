@@ -92,9 +92,26 @@ async function loginController(req, res) {
     }
   })
 }
-
-
+/**
+ * 
+ * @route {* gets the data of the logged ion user from its cookies *}
+ * @desc {* gets the data of the logged ion user from its cookies*} res 
+ */
+async function getMeController(req, res) {
+  const userId = req.user.id
+  const user = await userModel.findOne({_id: userId })
+ 
+  res.status(200).json({
+    user: {
+      username: user.username,
+      email: user.email,
+      bio: user.bio,
+      profileImage: user.profileImage
+     }
+   })
+}
 module.exports = {
     registerController,
-    loginController
+    loginController,
+    getMeController
 }

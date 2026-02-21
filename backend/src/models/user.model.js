@@ -4,6 +4,7 @@ const userSchema = mongoose.Schema({
     username: {
         type: String,
         unique: [true,"username already exists"],
+
         required: [true,"username is required"]
     },
     email: {
@@ -22,14 +23,6 @@ const userSchema = mongoose.Schema({
         default:""
     },
 
-    followers: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"users"
-    }],
-    following: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref:"users"
-    }]
 
 })
 
